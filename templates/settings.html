@@ -1,0 +1,124 @@
+        <div class="row title">
+            <h1>Settings</h1>
+            Configure this dashboard.
+        </div>
+
+        {{#unless isAdmin}}
+            <div class="alert-message warning">
+              <p>You need to be an admin to view/edit this section.</p>
+            </div>
+
+        {{/unless}}
+        {{#if isAdmin}}
+
+        <div class="tabbable">
+          <ul class="nav tabs">
+            <li class="active"><a href="#1" data-toggle="tab">Applications</a></li>
+            <li><a href="#2" data-toggle="tab">Admins</a></li>
+            <li><a href="#3" data-toggle="tab">Roles</a></li>
+            <li><a href="#4" data-toggle="tab">Users</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="1">
+
+                <ul class="app-list-condensed">
+                    
+                </ul>
+            </div>
+            <div class="tab-pane" id="2">
+                <div class="row multiUser">
+                    <div class=" span5">
+                        <button href="#add-admin-dialog" data-toggle="modal" class="btn small add-button">Add Admin</button>
+                        <h6>Admins</h6>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>User</th>
+                              <th class="action">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody class="admin-list">
+
+                          </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="3">
+                <div class="row multiUser">
+                    <div class=" span5">
+                        <button href="#add-role-dialog" data-toggle="modal" class="btn small add-button">Add Role</button>
+                        <h6>User Roles</h6>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Role</th>
+                              <th class="action">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody class="role-list">
+
+                          </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="4">
+                <div class="row multiUser">
+
+                </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+
+
+
+<div id="add-admin-dialog" class="modal fade" style="display: none;">
+    <div class="modal-header">
+        <h3>Add Admin</h3>
+    </div>
+    <div class="modal-body">
+        <p>Admins can install apps, and admin users.</p>
+        <form>
+            <label>Name</label>
+            <input type="text" id="admin-name" />
+            <label>Password</label>
+            <input type="password" id="admin-password">
+        </form>
+
+
+
+    </div>
+    <div class="modal-footer">
+        <button id="add-admin-final" class="btn primary">Add</button>
+        <button class="btn cancel">Cancel</button>
+    </div>
+</div>
+
+<div id="add-role-dialog" class="modal fade" style="display: none;">
+    <div class="modal-header">
+        <h3>Add Role</h3>
+    </div>
+    <div class="modal-body">
+        <p>Roles are a way to group permissions for users.</p>
+        <form>
+            <label>Role Name</label>
+            <input type="text" id="role-name" />
+        </form>
+
+
+
+    </div>
+    <div class="modal-footer">
+        <button id="add-role-final" class="btn primary">Add</button>
+        <button class="btn cancel">Cancel</button>
+    </div>
+</div>
+
+        {{/if}}

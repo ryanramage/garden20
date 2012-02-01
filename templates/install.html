@@ -1,0 +1,44 @@
+
+
+<div class="row">
+    <ul class="breadcrumb">
+      <li>
+        <a href="./#/apps">Apps</a> <span class="divider">/</span>
+      </li>
+      <li class="active">
+        Install Application
+      </li>
+    </ul>
+    <h1>Install Application</h1>
+</div>
+
+
+<div class="row install-row">
+
+    {{#if is_auth}}
+
+
+
+        {{#if app_url}}
+            <div class="alert-message block-message warning">
+                <p><strong>Heads up!</strong> You are about to <strong>install</strong> an application. Make sure you trust the information below.</p>
+            </div>
+            <div class="loading" data-appurl="{{app_url}}">
+                Loading installation information...Please wait
+            </div>
+
+        {{else}}
+
+              <form class="well search-form">
+                <input type="text" class="span6" placeholder="Application Url" name="app_url">
+                <button type="submit" class="btn">Next &raquo;</button>
+              </form>
+
+        {{/if}}
+    {{else}}
+        <div class="alert-message block-message warning">
+            <p>You need to login as an admin to install an application</p>
+        </div>
+    {{/if}}
+ 
+</div>

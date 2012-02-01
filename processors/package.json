@@ -1,0 +1,16 @@
+{
+  "name": "dashboard-provider",
+  "scripts": {
+    "start": "provider.js"
+  },
+  "dependencies": {
+    "request": ">= 2.0.3",
+    "couchapp": ">= 0.8.1",
+    "deferred": ">= 0.2.2",
+    "underscore": ">= 1.1.7"
+  },
+  "bundleDependencies": [
+    "follow"
+  ],
+  "version": "0.0.0-5"
+}

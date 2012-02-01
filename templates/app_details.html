@@ -1,0 +1,118 @@
+        <ul class="breadcrumb">
+          <li>
+            <a href="#/settings">Settings</a> <span class="divider">/</span>
+          </li>
+          <li class="active">
+            Application Settings
+          </li>
+        </ul>
+
+
+                
+        <div class="row title">
+                <img src="{{icon_src}}" style="float: right;"/>
+                <h1 class="edit-title" contenteditable="true">{{dashboard_title}}</h1>
+                <p>{{kanso.config.description}}</p>
+        </div>
+        
+        <div class="well">
+            <dl>
+                <dt>Installed</dt>
+                <dd>{{installed_text}}</dd>
+                
+                <dt>Installed From</dt>
+                <dd><a href="{{src}}">{{src}}</a>
+                
+                <dt>Application Version<dt>
+                <dd>{{kanso.config.version}}</dd>
+                
+                
+                <dt>Database Size</dt>
+                <dd id="db-size">calculating...</dd>
+                
+            </dl>
+        </div>       
+        
+
+        
+        
+        
+        <div class="row admin-only" style="display:none;">
+            <div class="span5">
+                <button class="btn small add-admin">Add</button>
+                <h4>Allowed Users/Roles</h4>
+                <table class="condensed-table striped-table">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>User/Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>User</td>
+                      <td>Bob Dob</td>
+                      <td><a class="delete">delete</a></td>
+                    </tr>
+                    <tr>
+                      <td>Role</td>
+                      <td>AccountingUsers</td>
+                      <td><a class="delete">delete</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="admin-only" style="display:none;">
+            <h4>Actions</h4>
+            <fieldset class="form-actions">
+              <a id="clone-app-start" href="#clone-app" data-toggle="modal" class="btn" title="Clone this application as another instance on your dashboard.">Clone</a>
+              <button  id="compact-final" class="btn " title="Clean up old data, reducing the database size">Compact</button>
+              <a href="#delete-app" data-toggle="modal"  class="btn danger" title="Delete this application">Delete</a>
+            </fieldset>
+
+
+            <div class="progress info striped active activity-info"  style="display: none;">
+              <div class="bar" style="width: 10%;"></div>
+            </div>
+
+            <div id="delete-app" class="modal fade" style="display: none;">
+                <div class="modal-header">
+                    <h3>Delete App</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this application?</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="delete-final" class="btn primary warning">Delete</button>
+                    <button class="btn cancel">Cancel</button>
+                </div>
+            </div>
+
+
+            <div id="clone-app" class="modal fade" style="display: none;">
+                <div class="modal-header">
+                    <h3>Clone App</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Create another instance of this app on your dashboard.</p>
+                    <form>
+                        <label>Name</label>
+                        <input type="text" id="newAppName" />
+                        <label>Copy Data</label>
+                        <input type="checkbox" id="copyData">
+                    </form>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button id="clone-final" class="btn primary">Clone</button>
+                    <button class="btn cancel">Cancel</button>
+                </div>
+            </div>
+        </div>

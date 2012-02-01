@@ -1,0 +1,14 @@
+{{#each apps}}
+<li class="span3">
+    <a href="{{start_url}}">
+        <div class="thumbnail" data-url="{{start_url}}" data-name="{{name}}" data-db="{{db}}" data-id="{{id}}">
+          <div class="badges">
+             <i class="download-alt" title="Update Available..."></i>
+          </div>
+          <img src="{{img}}" alt="">
+          <div class="app-name"><b>{{name}}</b></div>
+          
+        </div>
+    </a>
+</li>
+{{/each}}
