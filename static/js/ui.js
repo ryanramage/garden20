@@ -5,7 +5,7 @@ var userType = require('lib/userType');
 var couch = require('db');
 var current_db = couch.current();
 var session = require('session');
-var users = require("users");
+
 
 
 var show = function(what, context) {
@@ -21,11 +21,27 @@ var show = function(what, context) {
 $(function() {
 
 
+  $('.sign-up').click(function() {
+      console.log('click');
+      $('form').show(400);
+
+
+  });
+
   $('form').live('submit', function() {
      
-
-
+      var details = $(this).formParams();
+      details.type = 'request';
+      details.start = new Date().getTime();
       
+      current_db.saveDoc(details, function(err, resp) {
+            if (err) {
+                return err;
+            }
+            
+
+
+      });
       return false;
   })
 

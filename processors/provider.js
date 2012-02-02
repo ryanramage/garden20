@@ -12,8 +12,7 @@ if(!process.env['DST_COUCH_ROOT']) throw ("OMGZ YOU HAVE TO SET DST_COUCH_ROOT")
 
 var follow = require('follow')
   , request = require('request').defaults({json: true})
-  , couchapp = require('couchapp')
-  , deferred = require('deferred')
+  , async = require('async')
   , http = require('http')
   , path = require('path')
   , url = require('url')
@@ -31,30 +30,52 @@ var dst_db = process.env['DST_COUCH_ROOT'] ;
 
 
 
-follow({db: src_db, include_docs: true, filter: "provision/by_value", query_params: {k: "type", v: "database"}}, function(error, change) {
+follow({db: src_db, include_docs: true, filter: "garden-space/newRequest"}, function(error, change) {
   if (error || !("doc" in change)) return;
-  var doc = change.doc
-    , dbName = doc._id
-    , dbPath = couch + "/" + dbName
-    ;
-  checkExistenceOf(dbPath).then(function(status) {
-    console.log(dbPath, status)
-    if( (status === 404) && (!change.deleted) ) {
-      console.log('creating ' + dbName);
-      var start_time = new Date();
-      createDB(dbPath).then(function(response) {
-        function done() { console.log("created " + dbName + " in " + (new Date() - start_time) + "ms") }
-        if (doc.forkedFrom) {
-          // TODO prevent user from forking the same dataset twice
-          replicate(doc.forkedFrom, dbName).then(done);
-        } else {
-          pushCouchapp("recline", dbPath).then(done);
-        }
-        setAdmin(dbName, doc.user);
-      })
-    }
-  })
+  var doc = change.doc;
+  console.log(doc);
+
+
+
+//  checkExistenceOf(dbPath).then(function(status) {
+//    console.log(dbPath, status)
+//    if( (status === 404) && (!change.deleted) ) {
+//      console.log('creating ' + dbName);
+//      var start_time = new Date();
+//      createDB(dbPath).then(function(response) {
+//        function done() { console.log("created " + dbName + " in " + (new Date() - start_time) + "ms") }
+//        if (doc.forkedFrom) {
+//          // TODO prevent user from forking the same dataset twice
+//          replicate(doc.forkedFrom, dbName).then(done);
+//        } else {
+//          pushCouchapp("recline", dbPath).then(done);
+//        }
+//        setAdmin(dbName, doc.user);
+//      })
+//    }
+//  })
 })
+
+
+function createTargetDoc(doc, domainPrefix) {
+    return {
+        "_id":"Server/" + domainPrefix,
+        "partner": "somepartner",
+        "creation": {
+            "first_name": doc.first_name,
+            "last_name": doc.last_name,
+            "email": doc.email,
+            "subdomain": domainPrefix
+         }
+   };
+}
+
+
+function domainPrefix(doc) {
+    return doc.first_name + doc.last_name;
+}
+
+
 
 
 
