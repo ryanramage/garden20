@@ -5,6 +5,7 @@ var userType = require('lib/userType');
 var couch = require('db');
 var current_db = couch.current();
 var session = require('session');
+var sha1 = require('sha1');
 
 
 
@@ -92,14 +93,26 @@ $(function() {
       if (q.app_url) {
           details.app_url = q.app_url;
       }
-      current_db.saveDoc(details, function(err, resp) {
+
+
+       current_db.newUUID(100, function (err, uuid) {
             if (err) {
-                return err;
+                return callback(err);
             }
-            
+            details.salt = uuid;
+            details.password_sha = sha1.hex(details.password + details.salt);
+            delete details.password;
+
+            current_db.saveDoc(details, function(err, resp) {
+                    if (err) {
+                        return err;
+                    }
+            });
+        });
 
 
-      });
+
+
       return false;
   })
 
