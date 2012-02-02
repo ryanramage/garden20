@@ -6,6 +6,7 @@ var couch = require('db');
 var current_db = couch.current();
 var session = require('session');
 var sha1 = require('sha1');
+var gravatar = require('gravatar');
 
 
 
@@ -85,6 +86,36 @@ $(function() {
   });
 
 
+  
+  function showSignupErrors(errors) {
+      $('form .error').show();
+      var ul = $('form .error ul');
+      ul.empty();
+
+      if (_.isArray(errors)) {
+          $.each(errors, function(i, error) {
+              ul.append('<li>' + error + '</li>');
+          });
+      }
+      if (_.isString(errors)) {
+          ul.append('<li>' + errors + '</li>');
+      }
+
+
+  }
+
+  function validate(details) {
+      var errors = [];
+      if (!_.isString(details.email) || details.email === "") errors.push("Please enter an email.");
+      if (!_.isString(details.space) || details.space === "") errors.push("Please enter a space.");
+      if (!_.isString(details.password) || details.password === "") errors.push("Please enter a password.");
+      if (!_.isString(details.confirm_password) || details.confirm_password === "") errors.push("Please confirm your password.");
+      if (details.password !== details.confirm_password) errors.push("Passwords dont match");
+      return errors;
+  }
+
+
+
   $('form').live('submit', function() {
      
       var details = $(this).formParams();
@@ -95,17 +126,33 @@ $(function() {
       }
 
 
+      // we use the gravatar hash as the id. This prevents a reuse of a email
+      details._id = gravatar.hash(details.email);
+
+
+
+      var errors = validate(details);
+      if (errors.length > 0) {
+          showSignupErrors(errors);
+          return false;
+      }
+
+
+
+
+
        current_db.newUUID(100, function (err, uuid) {
             if (err) {
-                return callback(err);
+                return showSignupErrors(err);
             }
             details.salt = uuid;
             details.password_sha = sha1.hex(details.password + details.salt);
             delete details.password;
+            delete details.confirm_password;
 
             current_db.saveDoc(details, function(err, resp) {
                     if (err) {
-                        return err;
+                        return showSignupErrors('This email address has been used');
                     }
             });
         });

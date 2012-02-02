@@ -30,6 +30,7 @@
         "handlebars-helpers": "0.0.2",
         "duality-handlebars": "0.0.2",
         "duality-contrib-session-hb": ">=0.0.2",
-        "users" : null
+        "users" : null,
+        "gravatar" : null
     }
 }

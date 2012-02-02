@@ -68,8 +68,19 @@
 
                 <form class="well form-horizontal" style="display: none;">
 
+
+
+                    <div class="alert alert-message error" style="display: none;">
+                        <p><strong>Errors!</strong> Change the following.</p>
+                        <ul>
+
+                        </ul>
+                    </div>
+
+
+
                     <fieldset class="control-group">
-                      <label>Space</label>
+                      <label>Space *</label>
                       <div class="controls">
                         <input type="text" name="space" class="span2"/> .garden20.com
                         <p class="help-block availablity">&nbsp;</p>
@@ -92,19 +103,24 @@
                     </fieldset>
                     
                     <fieldset class="control-group">
-                      <label>Email</label>
+                      <label>Email *</label>
                       <div class="controls">
                         <input type="text" name="email"/>
                       </div>
                     </fieldset>
 
                     <fieldset class="control-group">
-                      <label>Password</label>
+                      <label>Password *</label>
                       <div class="controls">
                         <input type="password" name="password"/>
                       </div>
                     </fieldset>
-
+                    <fieldset class="control-group">
+                      <label>Confirm Password *</label>
+                      <div class="controls">
+                        <input type="password" name="confirm_password"/>
+                      </div>
+                    </fieldset>
 
                     <fieldset class="form-actions">
                       <button class="btn primary go-button">Go!</button>
