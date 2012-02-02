@@ -1,7 +1,7 @@
 {
-    "name": "garden-space",
+    "name": "garden20",
     "version": "0.0.1",
-    "description": "A couchapp to provision a new couchdb with a dashboard",
+    "description": "A couch app that provisions new couches with a fresh garden dashboards",
     "attachments": ["static", "index.html"],
     "modules": "lib",
     "load": "lib/app",
