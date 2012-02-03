@@ -39,33 +39,69 @@ follow({db: src_db, include_docs: true, filter: "garden20/newRequest", since : "
     if (error || !("doc" in change)) return;
     var doc = change.doc;
 
-    console.log(doc);
+    console.log('got a doc change');
+
+    if (doc.state || doc.in_progress) return;
 
     var domain = domainPrefix(doc);
     var fullDomain = domain + '.' + hosting_root;
     var targetDoc = createTargetDoc(doc, domain);
-    var start_time = new Date();
+    var start_time = new Date().getTime();
 
-    console.log(targetDoc);
+    doc.start_time = start_time;
+
 
     async.waterfall([
         function(callback){
-            createCouchPost(dst_db, targetDoc, callback);
+            createCouchPost(dst_db, targetDoc, function(err){
+                updateProgress(src_db, doc, 'Creating space...', 15, false, function(err2, doc2) {
+                    doc = doc2;
+                    callback(err);
+                });
+            });
         },
         function(callback){
-            waitForCouch(fullDomain, callback);
+            waitForCouch(fullDomain, function(err){
+                updateProgress(src_db, doc, 'Installing dashboard...', 40, false, function(err2, doc2) {
+                    doc = doc2;
+                    callback(err);
+                });
+            });
         },
         function(callback){
-            installDashboard(src_db_root, fullDomain, callback);
+            installDashboard(src_db_root, fullDomain, function(err){
+                updateProgress(src_db, doc, 'Creating user...', 70, false, function(err2, doc2) {
+                    doc = doc2;
+                    callback(err);
+                });
+            });
         },
         function(callback) {
-            createUser(fullDomain, doc.email, doc.password_sha, doc.salt, callback)
+            createUser(fullDomain, doc.email, doc.password_sha, doc.salt, function(err){
+                updateProgress(src_db, doc, 'Admin config...', 80, false, function(err2, doc2) {
+                    doc = doc2;
+                    callback(err);
+                });
+            })
         },
         function(callback) {
-            setAdmin(fullDomain, 'dashboard', doc.email, callback);
+            setAdmin(fullDomain, 'dashboard', doc.email, function(err){
+                updateProgress(src_db, doc, 'More Admin config...', 90, false, function(err2, doc2) {
+                    doc = doc2;
+                    callback(err);
+                });
+            });
         },
         function(callback) {
-            createAdmin(fullDomain, doc.email, doc.password_sha, doc.salt, callback)
+            createAdmin(fullDomain, doc.email, doc.password_sha, doc.salt, function(err){
+                updateProgress(src_db, doc, 'Finishing', 95, false, function(err2, doc2) {
+                    doc = doc2;
+                    callback(err);
+                });
+            });
+        },
+        function(callback) {
+            updateProgress(src_db, doc, 'Complete!', 100, true, callback);
         }
 
 
@@ -73,6 +109,35 @@ follow({db: src_db, include_docs: true, filter: "garden20/newRequest", since : "
         if (err) return console.log('workflow problem:  ' + JSON.stringify(err));
     });
 })
+
+
+
+function updateProgress(src_db, doc, state, percent, finished, callback) {
+    doc.state = state;
+    doc.percent = percent;
+    if (finished) {
+        delete doc.in_progress
+        doc.complete = true;
+        doc.finish_time = new Date().getTime();
+    } else {
+        doc.in_progress = true;
+
+    }
+    request({
+      uri: src_db + '/' + doc._id,
+      method: "PUT",
+      json : doc
+    },
+    function (err, resp, body) {
+        if (err) callback('ahh!! ' + err);
+        var response = body;
+        if (!response) response = {"ok": true};
+        if (!response.ok) callback(url + " - " + body);
+
+        doc._rev = response.rev;
+        callback(null, doc);
+    })
+}
 
 
 function createCouchPost(url, targetDoc, callback) {

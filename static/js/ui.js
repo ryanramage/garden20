@@ -123,6 +123,30 @@ $(function() {
   }
 
 
+  function showProgress(progress) {
+      $('.install-info h4').text(progress.state);
+      $('.install-info .bar').css('width', progress.percent + '%');
+
+      if (progress.complete) {
+        $('.install-info .bar').css('width', '100%');
+        $('.install-info .progress').removeClass('active');
+        $('.install-complete').show();
+        var url = generateGardenLink();
+        $('.install-complete a').attr('href', url);
+
+      } 
+  }
+
+  function generateGardenLink() {
+      var base = 'https://' + $('input[name="space"]').val() + '.iriscouch.com/dashboard/_design/dashboard/_rewrite/';
+      if (q.app_url) {
+          base += 'install?app_url=' + q.app_url;
+      }
+      return base;
+      
+  }
+
+
 
   $('form').live('submit', function() {
      
@@ -159,9 +183,34 @@ $(function() {
             delete details.confirm_password;
 
             current_db.saveDoc(details, function(err, resp) {
-                    if (err) {
-                        return showSignupErrors('This email address has been used');
-                    }
+                
+
+                if (err) {
+                    return showSignupErrors('This email address has been used');
+                }
+
+
+                $('.start-install').hide();
+                $('.install-info').show();
+
+
+
+                current_db.changes({
+                    filter : 'garden20/signupProgress',
+                    include_docs : true,
+                    id : resp.id
+                }, function(err, resp) {
+                    console.log('change');
+                    if (err) return console.log('error in changes: ' + err);
+                    console.log(resp);
+
+                    var progress = resp.results[0].doc;
+                    showProgress(progress);
+
+
+                });
+
+
             });
         });
 
