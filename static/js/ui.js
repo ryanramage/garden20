@@ -54,6 +54,14 @@ $(function() {
       }
   }
 
+  // localhost hack
+  if (window.location.hostname === 'localhost') {
+      var random = Math.round((Math.random() * 100000));
+      $('input[name="space"]').val('test-garden20-' + random);
+  }
+
+
+
 
   $('input[name="space"]').live('change', function() {
       var space = $(this).val();
@@ -62,7 +70,7 @@ $(function() {
       if (space) {
           availablity.text('Checking availablity...');
 
-          var url = 'http://hosting.iriscouch.com/hosting_public/Server%2f' + space + "?callback=?"
+          var url = 'https://hosting.iriscouch.com/hosting_public/Server%2f' + space + "?callback=?"
           console.log(url);
             $.ajax({
                 url : url,
