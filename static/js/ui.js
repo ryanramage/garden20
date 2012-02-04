@@ -31,8 +31,7 @@ $(function() {
 
 
   $('.sign-up').click(function() {
-      console.log('click');
-      $('form').show(400);
+      $('.well').show(400);
 
 
   });
@@ -57,13 +56,44 @@ $(function() {
   // localhost hack
   if (window.location.hostname === 'localhost') {
       var random = Math.round((Math.random() * 100000));
-      $('input[name="space"]').val('test-garden20-' + random);
+      $('form.main input[name="space"]').val('test-garden20-' + random);
   }
 
 
 
+  $('form.navbar-search').live('submit', function() {
+        var action = $(this).attr('action');
+        if (action !== 'UNSET') {
+            return true;
+        }
+        if (action === 'UNSET') {
+            try {
+                var me = $(this);
+                // find the user
+                var details = $(this).formParams();
+                var id = gravatar.hash(details.name);
+                current_db.getDoc(id, function(err, doc) {
+                    if (err) return alert('invalid user/password');
 
-  $('input[name="space"]').live('change', function() {
+                    var url = generateGardenLink();
+                    var session_url = 'https://' + doc.space + '.iriscouch.com/_session?next=' + url;
+                    me.attr('action', session_url);
+                    me.submit();
+
+                    return false;
+                });
+            } catch (e) {
+                return false;
+            }
+
+
+        } 
+        return false;
+  });
+
+
+
+  $('form.main input[name="space"]').live('change', function() {
       var space = $(this).val();
       
 
@@ -130,15 +160,22 @@ $(function() {
       if (progress.complete) {
         $('.install-info .bar').css('width', '100%');
         $('.install-info .progress').removeClass('active');
+
         $('.install-complete').show();
+
         var url = generateGardenLink();
-        $('.install-complete a').attr('href', url);
+        var session_url = 'https://' + $('input[name="space"]').val() + '.iriscouch.com/_session?next=' + url;
+        $('form.second').attr('action', session_url);
+        $('form.second input[name="name"]').val( $('form.main input[name="email"]').val() );
+        $('form.second input[name="password"]').val( $('form.main input[name="password"]').val() );
+
+
 
       } 
   }
 
   function generateGardenLink() {
-      var base = 'https://' + $('input[name="space"]').val() + '.iriscouch.com/dashboard/_design/dashboard/_rewrite/';
+      var base = '/dashboard/_design/dashboard/_rewrite/';
       if (q.app_url) {
           base += 'install?app_url=' + q.app_url;
       }
@@ -148,7 +185,7 @@ $(function() {
 
 
 
-  $('form').live('submit', function() {
+  $('form.main').live('submit', function() {
      
       var details = $(this).formParams();
       details.type = 'request';

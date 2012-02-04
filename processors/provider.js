@@ -169,7 +169,7 @@ function waitForCouch(fullDomain, callback) {
             checkExistenceOf('http://' + fullDomain, function(status){
                 var now = new Date().getTime();
                 var elapsed = now - start;
-                if (elapsed > 10000) callback('Timeout, waiting for couch');
+                if (elapsed > 20000) callback('Timeout, waiting for couch');
                 console.log(status);
                 if (status && status !== 404 ) couchNotUp = false;
                 // prob should be kind and do a settimeout

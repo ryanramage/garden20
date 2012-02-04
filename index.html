@@ -15,6 +15,16 @@
             <a class="brand" href="#">
                  <span class="brand-colour">Garden</span>20
             </a>
+
+            <div class="pull-right seperator">
+                <form class="navbar-search" method="POST" action="UNSET">
+                  <span class="login-text">Login:</span>
+                  <input type="text"     class="  span2" placeholder="email" name="name" />
+                  <input type="password" class="  span2" placeholder="password" name="password" />
+                  <button class="btn">Go</button>
+                </form>
+            </div>
+
       </div>
      </div>
     </div>
@@ -65,83 +75,84 @@
                   <p>First <b>sign up</b>, and then you will be asked to <b>install</b> the app from <span></span></p>
                 </div>
 
-
-                <form class="well form-horizontal" style="display: none;">
-
-
-
-                    <div class="alert alert-message error" style="display: none;">
-                        <p><strong>Errors!</strong> Change the following.</p>
-                        <ul>
-
-                        </ul>
-                    </div>
+                <div class="well" style="display: none;">
+                    <form class="main form-horizontal" >
 
 
 
-                    <fieldset class="control-group">
-                      <label>Space *</label>
-                      <div class="controls">
-                        <input type="text" name="space" class="span2"/> .garden20.com
-                        <p class="help-block availablity">&nbsp;</p>
-                      </div>
-                    </fieldset>
+                        <div class="alert alert-message error" style="display: none;">
+                            <p><strong>Errors!</strong> Change the following.</p>
+                            <ul>
 
-
-                    <fieldset class="control-group">
-                      <label>First Name</label>
-                      <div class="controls">
-                        <input type="text" name="first_name"/>
-                      </div>
-                    </fieldset>
-
-                    <fieldset class="control-group">
-                      <label>Last Name</label>
-                      <div class="controls">
-                        <input type="text" name="last_name"/>
-                      </div>
-                    </fieldset>
-                    
-                    <fieldset class="control-group">
-                      <label>Email *</label>
-                      <div class="controls">
-                        <input type="text" name="email"/>
-                      </div>
-                    </fieldset>
-
-                    <fieldset class="control-group">
-                      <label>Password *</label>
-                      <div class="controls">
-                        <input type="password" name="password"/>
-                      </div>
-                    </fieldset>
-                    <fieldset class="control-group">
-                      <label>Confirm Password *</label>
-                      <div class="controls">
-                        <input type="password" name="confirm_password"/>
-                      </div>
-                    </fieldset>
-
-                    <fieldset class="form-actions start-install">
-                      <button class="btn primary go-button">Create your Garden!</button>
-                    </fieldset>
-
-                    <div class="install-info" style="display: none;">
-                        <div class="progress info striped active"  >
-                          <div class="bar" style="width: 10%;"></div>
+                            </ul>
                         </div>
-                        <h4>Start..</h4>
-                    </div>
-
-
-                    <fieldset class="form-actions install-complete"  style="display: none;">
-                        <a class="btn primary" href="">Open Dashboard</a>
-                    </fieldset>
 
 
 
+                        <fieldset class="control-group">
+                          <label>Space *</label>
+                          <div class="controls">
+                            <input type="text" name="space" class="span2"/> .garden20.com
+                            <p class="help-block availablity">&nbsp;</p>
+                          </div>
+                        </fieldset>
 
-                </form>
+
+                        <fieldset class="control-group">
+                          <label>First Name</label>
+                          <div class="controls">
+                            <input type="text" name="first_name"/>
+                          </div>
+                        </fieldset>
+
+                        <fieldset class="control-group">
+                          <label>Last Name</label>
+                          <div class="controls">
+                            <input type="text" name="last_name"/>
+                          </div>
+                        </fieldset>
+
+                        <fieldset class="control-group">
+                          <label>Email *</label>
+                          <div class="controls">
+                            <input type="text" name="email"/>
+                          </div>
+                        </fieldset>
+
+                        <fieldset class="control-group">
+                          <label>Password *</label>
+                          <div class="controls">
+                            <input type="password" name="password"/>
+                          </div>
+                        </fieldset>
+                        <fieldset class="control-group">
+                          <label>Confirm Password *</label>
+                          <div class="controls">
+                            <input type="password" name="confirm_password"/>
+                          </div>
+                        </fieldset>
+
+                        <fieldset class="form-actions start-install">
+                          <button class="btn primary go-button">Create your Garden!</button>
+                        </fieldset>
+
+                        <div class="install-info" style="display: none;">
+                            <div class="progress info striped active"  >
+                              <div class="bar" style="width: 10%;"></div>
+                            </div>
+                            <h4>Start..</h4>
+                        </div>
+                    </form>
+                    <form class="second install-complete" action="/_session" method="POST"  style="display: none;">
+
+                        <input type="hidden" name="name" />
+                        <input type="hidden" name="password" />
+
+                        <fieldset class="form-actions " >
+                            <button type="submit" class="btn primary" >Open Dashboard</button>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
 
