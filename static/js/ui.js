@@ -28,7 +28,10 @@ $(function() {
       $('.install-message span').text(q.app_url);
   }
 
-
+  var email = amplify.store('email');
+  if (email) {
+      $('form.navbar-search input[name="name"]').val(email);
+  }
 
   $('.sign-up').click(function() {
       $('.well').show(400);
@@ -153,7 +156,7 @@ $(function() {
   }
 
 
-  function showProgress(progress) {
+  function showProgress(progress, details) {
       $('.install-info h4').text(progress.state);
       $('.install-info .bar').css('width', progress.percent + '%');
 
@@ -170,6 +173,8 @@ $(function() {
         $('form.second input[name="password"]').val( $('form.main input[name="password"]').val() );
 
 
+        // store the users email, for convience
+        amplify.store('email', details.email);
 
       } 
   }
@@ -242,7 +247,7 @@ $(function() {
                     console.log(resp);
 
                     var progress = resp.results[0].doc;
-                    showProgress(progress);
+                    showProgress(progress, details);
 
 
                 });
