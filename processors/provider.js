@@ -86,7 +86,7 @@ follow({db: src_db, include_docs: true, filter: "garden20/newRequest", since : "
         },
         function(callback) {
             setAdmin(fullDomain, 'dashboard', doc.email, function(err){
-                updateProgress(src_db, doc, 'More Admin config...', 90, false, function(err2, doc2) {
+                updateProgress(src_db, doc, 'Admin config (cont)...', 90, false, function(err2, doc2) {
                     doc = doc2;
                     callback(err);
                 });
