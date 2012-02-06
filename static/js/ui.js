@@ -3,7 +3,7 @@ var handlebars = require('handlebars');
 var garden_urls = require('lib/garden_urls');
 var userType = require('lib/userType');
 var couch = require('db');
-var current_db = couch.use('garden20');
+var current_db = couch.use('_db');
 var session = require('session');
 var sha1 = require('sha1');
 var gravatar = require('gravatar');
@@ -57,7 +57,7 @@ $(function() {
   }
 
   // localhost hack
-  if (window.location.hostname === 'localhost') {
+  if (window.location.hostname === 'localhost' || window.location.port == 5984) {
       var random = Math.round((Math.random() * 100000));
       $('form.main input[name="space"]').val('test-garden20-' + random);
   }
@@ -104,7 +104,6 @@ $(function() {
           availablity.text('Checking availablity...');
 
           var url = 'https://hosting.iriscouch.com/hosting_public/Server%2f' + space + "?callback=?"
-          console.log(url);
             $.ajax({
                 url : url,
                 dataType : 'jsonp',

@@ -70,12 +70,13 @@ follow({db: src_db, include_docs: true, filter: "garden20/newRequest", since : "
         },
         function(callback){
             installDashboard(src_db_root, fullDomain, function(err){
-                updateProgress(src_db, doc, 'Creating user...', 70, false, function(err2, doc2) {
+                updateProgress(src_db, doc, 'Creating User...', 70, false, function(err2, doc2) {
                     doc = doc2;
                     callback(err);
                 });
             });
         },
+
         function(callback) {
             createUser(fullDomain, doc.email, doc.password_sha, doc.salt, function(err){
                 updateProgress(src_db, doc, 'Admin config...', 80, false, function(err2, doc2) {
@@ -84,13 +85,26 @@ follow({db: src_db, include_docs: true, filter: "garden20/newRequest", since : "
                 });
             })
         },
+
         function(callback) {
             setAdmin(fullDomain, 'dashboard', doc.email, function(err){
-                updateProgress(src_db, doc, 'Admin config (cont)...', 90, false, function(err2, doc2) {
+                updateProgress(src_db, doc, 'Adjust routing', 85, false, function(err2, doc2) {
                     doc = doc2;
                     callback(err);
                 });
             });
+        },
+        function(callback) {
+            turnOffSecureRewrites(fullDomain, function(err) {
+                addVhosts(fullDomain, function(err) {
+                    updateProgress(src_db, doc, 'Admin config (cont)...', 90, false, function(err2, doc2) {
+                        doc = doc2;
+                        callback(err);
+                    });
+                });
+            })
+
+
         },
         function(callback) {
             createAdmin(fullDomain, doc.email, doc.password_sha, doc.salt, function(err){
@@ -249,12 +263,31 @@ function setAdmin(fullDomain, dbName, username, callback) {
 }
 
 function createAdmin(fullDomain, username, password_sha, password_salt, callback) {
-    var url = 'https://' + fullDomain + '/_config/admins/' + username;
+    var url = 'https://' + fullDomain + '/_couch/_config/admins/' + username;
     var pwd = JSON.stringify('-hashed-' + password_sha + ',' + password_salt);
     request({uri: url, method: "PUT", body: pwd}, function (err, resp, body) {
         if (err) callback('ahh!! ' + err);
         callback();
     })
+}
+
+function turnOffSecureRewrites(fullDomain, callback) {
+    var url  = 'https://' + fullDomain + '/_config/httpd/secure_rewrites';
+    var path = JSON.stringify("false");
+    request({uri: url, method: "PUT", body: path}, function (err, resp, body) {
+        if (err) callback('ahh!! ' + err);
+        callback();
+    })
+}
+
+
+function addVhosts(fullDomain, callback) {
+    var url  = 'https://' + fullDomain + '/_config/vhosts/' + fullDomain;
+    var path = JSON.stringify("/dashboard/_design/dashboard/_rewrite/");
+    request({uri: url, method: "PUT", body: path}, function (err, resp, body) {
+        if (err) callback('ahh!! ' + err);
+        callback();
+    })    
 }
 
 
@@ -305,13 +338,5 @@ function checkExistenceOf(url, callback) {
 
 
 
-function addVhost(url, couchapp) {
-  var dfd = deferred();
-  request({uri: couch + "/_config/vhosts/" + encodeURIComponent(url), method: "PUT", body: JSON.stringify(couchapp), json: false}, function (err, resp, body) {
-    console.log(body)
-    if (err) throw new Error('ahh!! ' + err);
-    dfd.resolve(body);
-  })
-  return dfd.promise();
-}
+
 
