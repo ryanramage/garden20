@@ -1,4 +1,4 @@
-var _ = require('underscore')._;
+    var _ = require('underscore')._;
 var handlebars = require('handlebars');
 var garden_urls = require('lib/garden_urls');
 var userType = require('lib/userType');
@@ -179,7 +179,7 @@ $(function() {
   }
 
   function generateGardenLink() {
-      var base = '/dashboard/_design/dashboard/_rewrite/';
+      var base = '/';
       if (q.app_url) {
           base += 'install?app_url=' + q.app_url;
       }
