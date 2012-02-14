@@ -11,7 +11,6 @@ var tryRequire = function (a, b) {
 };
 
 var fs = require('fs'),
-    mime = require('mime'),
     jsp = require('uglify-js/lib/parse-js'),
     pro = require('uglify-js/lib/process'),
     modules = require('kanso-utils/modules'),
@@ -61,7 +60,7 @@ module.exports = function (root, path, settings, doc, callback) {
             doc._attachments = {};
         }
         doc._attachments['modules.js'] = {
-            'content_type': mime.lookup('modules.js'),
+            'content_type': 'application/json; charset=utf-8',
             'data': new Buffer(data).toString('base64')
         };
 

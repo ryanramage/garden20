@@ -39,16 +39,6 @@
             <p class="lead">
                 We offer free hosting for web applications. Create your own private garden space!
             </p>
-
-            
-
-
-
-            <p class="download-info">
-              <button class="btn primary btn-large sign-up">Sign Up &raquo;</button>
-              <button class="btn btn-large">Learn More</button>
-            </p>
-
             <div class="benefits">
               <h4>Highlights</h4>
               <ul>
@@ -73,84 +63,95 @@
                   <p>First <b>sign up</b>, and then you will be asked to <b>install</b> the app from <span></span></p>
                 </div>
 
-                <div class="well" style="display: none;">
-                    <form class="main form-horizontal" >
+                <ul class="nav tabs">
+                  <li class="active"><a href="#signupTab">Sign Up</a></li>
+                  <li><a href="#learnMoreTab">Learn More</a></li>
+                </ul>
+
+                <div class="tab-content">
+                  <div class="tab-pane active" id="signupTab">
+                          <form class="main form-horizontal" >
+                              <div class="alert alert-message error" style="display: none;">
+                                  <p><strong>Errors!</strong> Change the following.</p>
+                                  <ul>
+
+                                  </ul>
+                              </div>
 
 
 
-                        <div class="alert alert-message error" style="display: none;">
-                            <p><strong>Errors!</strong> Change the following.</p>
-                            <ul>
-
-                            </ul>
-                        </div>
-
-
-
-                        <fieldset class="control-group">
-                          <label>Space *</label>
-                          <div class="controls">
-                            <input type="text" name="space" class="span2"/> .garden20.com
-                            <p class="help-block availablity">&nbsp;</p>
-                          </div>
-                        </fieldset>
+                              <fieldset class="control-group">
+                                <label>Space *</label>
+                                <div class="controls">
+                                  <input type="text" name="space" class="span2"/> .garden20.com
+                                  <p class="help-block availablity">&nbsp;</p>
+                                </div>
+                              </fieldset>
 
 
-                        <fieldset class="control-group">
-                          <label>First Name</label>
-                          <div class="controls">
-                            <input type="text" name="first_name"/>
-                          </div>
-                        </fieldset>
+                              <fieldset class="control-group">
+                                <label>First Name</label>
+                                <div class="controls">
+                                  <input type="text" name="first_name"/>
+                                </div>
+                              </fieldset>
 
-                        <fieldset class="control-group">
-                          <label>Last Name</label>
-                          <div class="controls">
-                            <input type="text" name="last_name"/>
-                          </div>
-                        </fieldset>
+                              <fieldset class="control-group">
+                                <label>Last Name</label>
+                                <div class="controls">
+                                  <input type="text" name="last_name"/>
+                                </div>
+                              </fieldset>
 
-                        <fieldset class="control-group">
-                          <label>Email *</label>
-                          <div class="controls">
-                            <input type="text" name="email"/>
-                          </div>
-                        </fieldset>
+                              <fieldset class="control-group">
+                                <label>Email *</label>
+                                <div class="controls">
+                                  <input type="text" name="email"/>
+                                </div>
+                              </fieldset>
 
-                        <fieldset class="control-group">
-                          <label>Password *</label>
-                          <div class="controls">
-                            <input type="password" name="password"/>
-                          </div>
-                        </fieldset>
-                        <fieldset class="control-group">
-                          <label>Confirm Password *</label>
-                          <div class="controls">
-                            <input type="password" name="confirm_password"/>
-                          </div>
-                        </fieldset>
+                              <fieldset class="control-group">
+                                <label>Password *</label>
+                                <div class="controls">
+                                  <input type="password" name="password"/>
+                                </div>
+                              </fieldset>
+                              <fieldset class="control-group">
+                                <label>Confirm Password *</label>
+                                <div class="controls">
+                                  <input type="password" name="confirm_password"/>
+                                </div>
+                              </fieldset>
 
-                        <fieldset class="form-actions start-install">
-                          <button class="btn primary go-button">Create your Garden!</button>
-                        </fieldset>
+                              <fieldset class="form-actions start-install">
+                                <button class="btn primary go-button">Create your Garden!</button>
+                              </fieldset>
 
-                        <div class="install-info" style="display: none;">
-                            <div class="progress info striped active"  >
-                              <div class="bar" style="width: 10%;"></div>
-                            </div>
-                            <h4>Please wait..</h4>
-                        </div>
-                    </form>
-                    <form class="second install-complete" action="/_session" method="POST"  style="display: none;">
+                              <div class="install-info" style="display: none;">
+                                  <div class="progress info striped active"  >
+                                    <div class="bar" style="width: 10%;"></div>
+                                  </div>
+                                  <h4>Please wait..</h4>
+                              </div>
+                          </form>
+                          <form class="second install-complete" action="/_session" method="POST"  style="display: none;">
 
-                        <input type="hidden" name="name" />
-                        <input type="hidden" name="password" />
+                              <input type="hidden" name="name" />
+                              <input type="hidden" name="password" />
 
-                        <fieldset class="form-actions " >
-                            <button type="submit" class="btn primary" >Open Dashboard</button>
-                        </fieldset>
-                    </form>
+                              <fieldset class="form-actions " >
+                                  <button type="submit" class="btn primary" >Open Dashboard</button>
+                              </fieldset>
+                          </form>
+                  </div>
+                  <div class="tab-pane" id="learnMoreTab">
+                    We offer
+                  </div>
                 </div>
+
+
+
+
             </div>
         </div>
 
@@ -162,8 +163,7 @@
     <script type="text/javascript" src="static/js/lib/jquery.parsequery.js"></script>
     <script type="text/javascript" src="static/js/lib/jquery.couch.js"></script>
     <script type="text/javascript" src="static/js/lib/amplify.min.js"></script>
-    <script type="text/javascript" src="static/js/lib/bootstrap-twipsy.js"></script>
-    <script type="text/javascript" src="static/js/lib/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="static/js/lib/bootstrap-tooltip.js"></script>
     <script type="text/javascript" src="static/js/lib/bootstrap-alert.js"></script>
     <script type="text/javascript" src="static/js/lib/bootstrap-modal.js"></script>
     <script type="text/javascript" src="static/js/lib/bootstrap-tab.js"></script>

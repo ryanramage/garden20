@@ -33,11 +33,7 @@ $(function() {
       $('form.navbar-search input[name="name"]').val(email);
   }
 
-  $('.sign-up').click(function() {
-      $('.well').show(400);
-
-
-  });
+  $('.tabs').tab('show')
 
   var availablity = $('.availablity');
   var go_button   = $('.go-button');
