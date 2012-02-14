@@ -9,17 +9,6 @@ var sha1 = require('sha1');
 var gravatar = require('gravatar');
 
 
-
-var show = function(what, context) {
-    if (!context) context = {};
-    $('.nav li').removeClass('active');
-    $('.nav li.' + what).addClass('active');
-    $('.main').html(handlebars.templates[what + '.html'](context, {}));
-} 
-
-
-
-
 $(function() {
 
   var q = $.parseQuery();
@@ -32,8 +21,6 @@ $(function() {
   if (email) {
       $('form.navbar-search input[name="name"]').val(email);
   }
-
-  $('.tabs').tab('show')
 
   var availablity = $('.availablity');
   var go_button   = $('.go-button');
