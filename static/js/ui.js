@@ -62,7 +62,7 @@ $(function() {
                     if (err) return alert('invalid user/password');
 
                     var url = generateGardenLink();
-                    var session_url = 'https://' + doc.space + '.garden20.com/_session?next=' + url;
+                    var session_url = 'http://' + doc.space + '.garden20.com/_session?next=' + url;
                     me.attr('action', session_url);
                     me.submit();
 
@@ -149,7 +149,7 @@ $(function() {
         $('.install-complete').show();
 
         var url = generateGardenLink();
-        var session_url = 'https://' + $('input[name="space"]').val() + '.garden20.com/_session?next=' + url;
+        var session_url = 'http://' + $('input[name="space"]').val() + '.garden20.com/_session?next=' + url;
         $('form.second').attr('action', session_url);
         $('form.second input[name="name"]').val( $('form.main input[name="email"]').val() );
         $('form.second input[name="password"]').val( $('form.main input[name="password"]').val() );
