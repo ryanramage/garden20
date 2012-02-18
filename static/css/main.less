@@ -1,16 +1,17 @@
 @import "packages/bootstrap/bootstrap/lib/bootstrap.less";
 /* Now use bootstrap and less! */
 
+// http://www.colourlovers.com/pattern/2217189/garden2.0
 
-@brand-accent-1: #EEECBB;
-@brand-accent-2: #B5C976;
-@brand-accent-3: #AFA34E;
-@brand-accent-4: #7C7649;
-@brand-accent-5: #473D2E;
+@brand-accent-1: #CBDBC3;
+@brand-accent-2: #FDFDEF;
+@brand-accent-3: #5B4017;
+@brand-accent-4: #999F46;
+@brand-accent-5: #64645F;
 
 
 .login-text {
-    color : white;
+    color : @brand-accent-2;
 }
 
 
@@ -29,96 +30,79 @@ form.navbar-search button {
 }
 
 span.brand-colour {
-    color: @brand-accent-2;
+    color: @brand-accent-4;
 }
 
-/* Jumbotrons
--------------------------------------------------- */
-.jumbotron {
-  position: relative;
-  text-shadow: 0 1px 0 #fff;
+body {
+    background: url(bg5.png) repeat color('#CBDBC3');
 }
+
+.container[role="main"] {
+    width: 840px;
+    background-color: rgb(253,253,239);
+    padding-top: 25px;
+    padding-left: 90px;
+    padding-right: 30px;
+    border-radius: 25px;
+    moz-box-shadow: #723600 0 0 10px 0;
+    -webkit-box-shadow: #723600 0 0 10px 0;
+    -o-box-shadow: #723600 0 0 10px 0;
+    box-shadow: #723600 0 0 10px 0;
+}
+
+.form-actions {
+    border-top: 0px !important;
+    background: @brand-accent-2 !important;
+}
+
+.tabs > .active > a, .tabs > .active > a:hover {
+    background: @brand-accent-2 !important;
+}
+
+
+.jumbotron img.banner {
+   width: 220px;
+   height: 160px;
+   float: right;
+}
+
 .jumbotron h1 {
-  margin-right: 40%;
-  margin-bottom: 9px;
-  font-size: 70px;
-  letter-spacing: -1px;
-  line-height: 1;
+    font-size: 70px;
+    line-height: 40px;
+    padding: 5px 0 15px 0;
 }
 
-.jumbotron h2 {
-  margin-right: 40%;
-  margin-bottom: 9px;
-  font-size: 40px;
-  letter-spacing: -1px;
-  line-height: 1;
+.jumbotron .lead {
+    margin-top: 30px;
 }
 
-
-
-.jumbotron p {
-  margin-right: 32%;
-  margin-bottom: 20px;
-  font-size: 25px;
-  font-weight: 300;
-  line-height: 36px;
-}
-.jumbotron .btn-large {
-  font-size: 20px;
-  padding: 14px 24px;
-  margin-right: 5px;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-}
-.jumbotron .download-info {
-  font-size: 16px;
-  color: #999;
+.fold {
+    margin-top: 40px;
 }
 
-/* Benefits list in masthead */
-.benefits {
-  width: 250px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-.benefits ul {
-  list-style: none;
-  margin: 0;
-}
-.benefits li {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 35px;
-  color: #555;
-}
-.benefits li + li {
-  border-top: 1px solid #f5f5f5;
-}
-.benefits h4 {
-  color: #555;
-}
-.benefits span {
-  position: relative;
-  top: -2px;
-  padding-right: 5px;
-  color: #999;
+.featuredApp {
+    background-color: @brand-accent-1;
+    margin-top: 34px;
+    border-radius: 10px;
+    padding: 10px 15px;
+
 }
 
-/* Specific jumbotrons
-------------------------- */
-/* supporting docs pages */
-.subhead {
-  padding-bottom: 14px;
-  margin-bottom: 45px;
-  border-bottom: 3px solid #e5e5e5;
-}
-.subhead h1,
-.subhead p {
-  margin-right: 0;
-}
-.subhead h1 {
-  font-size: 45px;
+.featuredApp img {
+    opacity: 0.9;
+    border-radius: 3px;
+    box-shadow: #723600 0 0 10px 0;
 }
 
+.featuredApp h4 {
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.featuredApp .caption {
+    margin-top: 10px;
+}
+
+.garden-info {
+    min-height: 380px;
+}
