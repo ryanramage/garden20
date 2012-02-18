@@ -91,7 +91,7 @@ $(function() {
                 url : url,
                 dataType : 'jsonp',
                 json : true,
-                timeout: 1500,
+                timeout: 3500,
                 success : function(data) {
                     //console.log(data)
                 },
