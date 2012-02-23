@@ -13,8 +13,9 @@ $(function() {
 
   var q = $.parseQuery();
   if (q.app_url) {
-      $('.install-message').show();
+
       $('.install-message span').text(q.app_url);
+      $('.install-message').show(1000);
   }
 
   var email = amplify.store('email');
