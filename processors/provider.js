@@ -286,7 +286,14 @@ function addVhosts(fullDomain, callback) {
     var path = JSON.stringify("/dashboard/_design/dashboard/_rewrite/");
     request({uri: url, method: "PUT", body: path}, function (err, resp, body) {
         if (err) callback('ahh!! ' + err);
-        callback();
+
+        // make sure the dashboard can be reached directly
+        var url = url + '/dashboard';
+        path = '/dashboard';
+        request({uri: url, method: "PUT", body: path}, function (err, resp, body) {
+           if (err) callback('ahh!! ' + err);
+           callback();
+       });
     })    
 }
 
