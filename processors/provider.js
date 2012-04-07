@@ -288,7 +288,7 @@ function addVhosts(fullDomain, callback) {
         if (err) callback('ahh!! ' + err);
 
         // make sure the dashboard can be reached directly
-        var url = url + '/dashboard';
+        url = url + '/dashboard';
         path = '/dashboard';
         console.log(url);
         console.log(path);
