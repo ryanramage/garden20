@@ -289,7 +289,7 @@ function addVhosts(fullDomain, callback) {
 
         // make sure the dashboard can be reached directly
         url = url + '%2Fdashboard';
-        path = '/dashboard';
+        path = JSON.stringify('/dashboard');
         console.log(url);
         console.log(path);
         request({uri: url, method: "PUT", body: path}, function (err, resp, body) {
