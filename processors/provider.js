@@ -240,8 +240,8 @@ function createUser(fullDomain, username, password_sha, password_salt, callback)
     doc.salt = password_salt;
     doc.password_sha = password_sha;
 
-
-    var url = 'https://' + fullDomain + '/_users/'  + doc._id;
+    var encoded_id = encodeURIComponent(doc._id);
+    var url = 'https://' + fullDomain + '/_users/'  + encoded_id;
     request({uri: url, method: "PUT", body: doc}, function (err, resp, body) {
         if (err) callback('ahh!! ' + err);        
         if (!body.ok) callback('error creating user: ' + body);
