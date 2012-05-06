@@ -5,187 +5,44 @@
     <link rel="stylesheet" type="text/css" href="static/css/main.css" />
     <link rel="shortcut icon" href="static/img/garden-18.png" />
     <title>Garden20</title>
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-31457059-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
   </head>
   <body>
-
-    <div class="navbar navbar-static">
-      <div class="navbar-inner">
-        <div class="container">
-            
-            <a class="brand" href="#">
-                 <span class="brand-colour">Garden</span>20
-            </a>
-
-            <div class="pull-right seperator">
-                <form class="navbar-search" method="POST" action="UNSET">
-                  <span class="login-text">Login:</span>
-                  <input type="text"     class="  span2" placeholder="email" name="name" />
-                  <input type="password" class="  span2" placeholder="password" name="password" />
-                  <button class="btn">Go</button>
-                </form>
-            </div>
-
-      </div>
-     </div>
-    </div>
     <div class="container" role="main">
+        <h2>Garden Overview</h2>
 
 
-        <div class="row jumbotron">
-            <div class="span10">
-                <img class="banner" src="static/img/banner_3.png" />
-                <h1>Plant some apps</h1>
-                <h1>in our garden.</h1>
-            </div>
-        </div>
         <div class="row">
-            <div class="span10">
-                <h3 class="lead">Garden20 is a new way to run apps.</h3>
+
+            <div class="span3 zoomTarget">
+                Apps
             </div>
+            <div class="span3 zoomTarget">
+                Market
+            </div>
+            <div class="span3 zoomTarget">
+                Hostings
+            </div>
+
         </div>
-        <div class="row">
-            <div class="offset1 span2">
-                Choose apps from many different Garden Markets.
-            </div>
-            <div class="span2">
-                Garden20 provides a hosted private garden space for your apps.
-            </div>
-            <div class="span2">
-                Sync your apps locally to Win/MacOS/Linux and iOS/Android.
-            </div>
-            <div class="span2">
-                Manage apps and users from the dashboard interface.
-            </div>
-        </div>
-
-        <div class="row fold">
-            <div class="offset1 span8">
-                <div class="alert alert-info  install-message" style="display: none;">
-                  <img src="static/img/download.png" alt="download" />
-                  <p><b>Sign up</b>, or <b>Login</b> and then you can <b>install</b> the app from <span></span></p>
-                </div>
-            </div>
-
-            <div class="main span6">
-
-
-
-                <ul class="nav tabs">
-                  <li class="active"><a href="#signupTab" data-toggle="tab">Sign Up</a></li>
-                  <li><a href="#learnMoreTab" data-toggle="tab">Learn More</a></li>
-                </ul>
-
-                <div class="tab-content">
-                  <div class="tab-pane active" id="signupTab">
-                          <form class="main form-horizontal" >
-                              <div class="alert alert-message error" style="display: none;">
-                                  <p><strong>Errors!</strong> Change the following.</p>
-                                  <ul>
-
-                                  </ul>
-                              </div>
-
-
-
-                              <fieldset class="control-group">
-                                <label>Space *</label>
-                                <div class="controls">
-                                  <input type="text" name="space" class="span2"/> .garden20.com
-                                  <p class="help-block availablity">&nbsp;</p>
-                                </div>
-                              </fieldset>
-
-
-                              <fieldset class="control-group">
-                                <label>First Name</label>
-                                <div class="controls">
-                                  <input type="text" name="first_name"/>
-                                </div>
-                              </fieldset>
-
-                              <fieldset class="control-group">
-                                <label>Last Name</label>
-                                <div class="controls">
-                                  <input type="text" name="last_name"/>
-                                </div>
-                              </fieldset>
-
-                              <fieldset class="control-group">
-                                <label>Email *</label>
-                                <div class="controls">
-                                  <input type="text" name="email"/>
-                                </div>
-                              </fieldset>
-
-                              <fieldset class="control-group">
-                                <label>Password *</label>
-                                <div class="controls">
-                                  <input type="password" name="password"/>
-                                </div>
-                              </fieldset>
-                              <fieldset class="control-group">
-                                <label>Confirm Password *</label>
-                                <div class="controls">
-                                  <input type="password" name="confirm_password"/>
-                                </div>
-                              </fieldset>
-
-                              <fieldset class="form-actions start-install">
-                                <button class="btn success go-button">Create your Garden!</button>
-                              </fieldset>
-
-                              <div class="install-info" style="display: none;">
-                                  <div class="progress info striped active"  >
-                                    <div class="bar" style="width: 10%;"></div>
-                                  </div>
-                                  <h4>Please wait..</h4>
-                              </div>
-                          </form>
-                          <form class="second install-complete" action="/_session" method="POST"  style="display: none;">
-
-                              <input type="hidden" name="name" />
-                              <input type="hidden" name="password" />
-
-                              <fieldset class="form-actions " >
-                                  <button type="submit" class="btn success" >Open Dashboard</button>
-                              </fieldset>
-                          </form>
-                  </div>
-                  <div class="tab-pane" id="learnMoreTab">
-                      <div class="garden-info">
-                          Well, we don't have much more to tell you at this point. But just sign up and see how cool it
-                          is to run apps you choose in a private cloud space. It gets better when you know you can
-                          run these apps offline on all your devices, and have them sync together.
-                      </div>
-
-                  </div>
-                </div>
-
-
-
-
-            </div>
-            <div class="offset1 span3">
-
-                <div class="featuredApp">
-                    <h4>Featured App</h4>
-                    <img src="static/img/promo_small.png" alt="Kanso Wiki">
-                    <div class="caption">
-                      <h5>Kanso Wiki</h5>
-                      <p>Put a wiki in your garden.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     </div>
     <script type="text/javascript" src="static/js/lib/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="static/js/lib/jquery-ui-1.8.5.custom.min.js"></script>
-    <script type="text/javascript" src="static/js/lib/jquery.dom.form_params.js"></script>
+    <script type="text/javascript" src="static/js/lib/jquery.zoomooz.min.js"></script>
     <script type="text/javascript" src="static/js/lib/jquery.parsequery.js"></script>
     <script type="text/javascript" src="static/js/lib/jquery.couch.js"></script>
-    <script type="text/javascript" src="static/js/lib/amplify.min.js"></script>
     <script type="text/javascript" src="static/js/lib/bootstrap-tooltip.js"></script>
     <script type="text/javascript" src="static/js/lib/bootstrap-alert.js"></script>
     <script type="text/javascript" src="static/js/lib/bootstrap-modal.js"></script>

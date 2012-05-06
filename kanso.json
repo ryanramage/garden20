@@ -2,7 +2,7 @@
     "name": "garden20",
     "version": "0.0.1",
     "description": "A couch app that provisions new couches with a fresh garden dashboards",
-    "attachments": ["static", "index.html"],
+    "attachments": ["static", "index.html", "overview.html"],
     "modules": "lib",
     "load": "lib/app",
     "less": {
