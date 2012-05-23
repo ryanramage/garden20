@@ -11,16 +11,10 @@ var gravatar = require('gravatar');
 
 $(function() {
 
-  var q = {};
-  if (q.app_url) {
-
-      $('.install-message span').text(q.app_url);
-      $('.install-message').show(1000);
-  }
 
   var email = amplify.store('email');
   if (email) {
-      $('form.navbar-search input[name="name"]').val(email);
+      $('form.login input[name="name"]').val(email);
   }
 
   var availablity = $('.availablity');
@@ -48,7 +42,7 @@ $(function() {
 
 
 
-  $('form.navbar-search').live('submit', function() {
+  $('form.login').live('submit', function() {
         var action = $(this).attr('action');
         if (action !== 'UNSET') {
             return true;
@@ -57,7 +51,10 @@ $(function() {
             try {
                 var me = $(this);
                 // find the user
-                var details = $(this).formParams();
+                var details = {
+                    name: $('form.login input[name="name"]').val(),
+                    password: $('form.login input[name="password"]').val()
+                }
                 var id = gravatar.hash(details.name);
                 current_db.getDoc(id, function(err, doc) {
                     if (err) return alert('invalid user/password');
@@ -70,6 +67,7 @@ $(function() {
                     return false;
                 });
             } catch (e) {
+                console.log(e);
                 return false;
             }
 
@@ -164,7 +162,8 @@ $(function() {
 
   function generateGardenLink() {
       var base = '/';
-      if (q.app_url) {
+      var app_url = $('.app_info').data('app_url');
+      if (app_url) {
           base += 'install?app_url=' + q.app_url;
       }
       return base;
@@ -174,12 +173,12 @@ $(function() {
 
 
   $('form.main').live('submit', function() {
-     
+      var app_url = $('.app_info').data('app_url');
       var details = $(this).formParams();
       details.type = 'request';
       details.start = new Date().getTime();
-      if (q.app_url) {
-          details.app_url = q.app_url;
+      if (app_url) {
+          details.app_url = app_url;
       }
 
 

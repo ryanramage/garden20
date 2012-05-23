@@ -5,7 +5,6 @@ $(function(){
     var app_url = $('.app_info').data('app_url');
     dashboard_core.getGardenAppDetails(app_url, function(err, results) {
         if (err) return console.log('error', err);
-        console.log(results);
         $('.app_icon').attr('src', results.icon_url);
         $('.app_title').text(results.kanso.config.name);
         $('.uploaded_by').text(results.user).attr('href', results.user_url)
