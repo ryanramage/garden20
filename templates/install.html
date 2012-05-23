@@ -17,29 +17,123 @@
     </div>
   </div>
 </div>
-<div id="thirdbar" class="app_details">
-  <div class="container">
-    <div class="row">
-        <div class="span2">
-            Garden20!
-        </div>
-    </div>
-  </div>
-</div>
 <div class="container">
   <div id="content">
+
+
+
+    <div class="wizard_trail first">
+        <h2>Installation Location</h2>
+        <div class="step-info">
+            <div class="icon-holder">
+                <img src="../static/img/garden20.png" alt="" />
+                <div class="type">Hosted</div>
+            </div>
+            <div class="step-description">
+                Garden20
+            </div>
+        </div>
+    </div>
+
+    <div class="row welcome">
+        <div class="span12">
+            <h3>Welcome to Garden20!</h3>
+            <p>Easy hosting for your apps, <a href="">more info.</a> Please login or signup.</p>
+        </div>
+    </div>
     <div class="row">
 
-        <div class="span3">
-            Login
+        <div class="span6 ">
+            <form class="main form-horizontal well" >
+              <h3>Sign Up</h3>
+              <div class="alert alert-message error" style="display: none;">
+                  <p><strong>Errors!</strong> Change the following.</p>
+                  <ul>
+                  </ul>
+              </div>
+              <fieldset class="control-group">
+                <label>Space *</label>
+                <div class="controls">
+                  <input type="text" name="space" class="span2"/> .garden20.com
+                  <p class="help-block availablity">&nbsp;</p>
+                </div>
+              </fieldset>
+
+
+              <fieldset class="control-group">
+                <label>First Name</label>
+                <div class="controls">
+                  <input type="text" name="first_name"/>
+                </div>
+              </fieldset>
+
+              <fieldset class="control-group">
+                <label>Last Name</label>
+                <div class="controls">
+                  <input type="text" name="last_name"/>
+                </div>
+              </fieldset>
+
+              <fieldset class="control-group">
+                <label>Email *</label>
+                <div class="controls">
+                  <input type="text" name="email"/>
+                </div>
+              </fieldset>
+
+              <fieldset class="control-group">
+                <label>Password *</label>
+                <div class="controls">
+                  <input type="password" name="password"/>
+                </div>
+              </fieldset>
+              <fieldset class="control-group">
+                <label>Confirm Password *</label>
+                <div class="controls">
+                  <input type="password" name="confirm_password"/>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-actions start-install">
+                <button class="btn success go-button">Sign Up!</button>
+              </fieldset>
+
+              <div class="install-info" style="display: none;">
+                  <div class="progress info striped active"  >
+                    <div class="bar" style="width: 10%;"></div>
+                  </div>
+                  <h4>Please wait..</h4>
+              </div>
+            </form>
         </div>
-        <div class="span3">
-            Signup
+        <div class="span6">
+            <form class="main form-horizontal well" >
+              <h3>Login</h3>
+              <div class="alert alert-message error" style="display: none;">
+                  <p><strong>Errors!</strong> Change the following.</p>
+                  <ul>
+
+                  </ul>
+              </div>
+              <fieldset class="control-group">
+                <label>Email *</label>
+                <div class="controls">
+                  <input type="text" name="email"/>
+                </div>
+              </fieldset>
+              <fieldset class="control-group">
+                <label>Password *</label>
+                <div class="controls">
+                  <input type="password" name="password"/>
+                </div>
+              </fieldset>
+              <fieldset class="form-actions start-install">
+                <button class="btn success go-button">Login</button>
+              </fieldset>
+            </form>
         </div>
-
-
-
     </div>
+
   </div>
 </div>
 <script type="text/javascript" src="static/js/install.js"></script>
