@@ -1,5 +1,31 @@
+
+
 @import "packages/bootstrap/bootstrap/lib/bootstrap.less";
+@import "secondbar.less";
+
 /* Now use bootstrap and less! */
+
+@black:             #000;
+@grayDark:          lighten(@black, 25%);
+@gray:              lighten(@black, 50%);
+@grayLight:         lighten(@black, 75%);
+@grayLighter:       lighten(@black, 90%);
+@white:             #fff;
+
+// Accent Colors
+@blue:              #699ac8;
+@blueDark:          #385f83;
+@green:             #31d055;
+@red:               #bd0000;
+@yellow:            #f0ed3d;
+@orange:            #f88619;
+@pink:              #dc4b83;
+@purple:            #562758;
+
+// Baseline grid
+@basefont:          13px;
+@baseline:          18px;
+
 
 // http://www.colourlovers.com/pattern/2217189/garden2.0
 
@@ -33,10 +59,7 @@ span.brand-colour {
     color: @brand-accent-4;
 }
 
-body {
-    background: url(bg6.png) no-repeat color('#CBDBC3');
-    background-position: 10px 70px;
-}
+
 
 .container[role="main"] {
     width: 840px;

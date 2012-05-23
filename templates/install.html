@@ -1,44 +1,45 @@
+<div id="secondbar" class="app_details">
+  <div class="container">
+    <div class="row app_info" data-app_url="{{app_url}}">
+      <div class="span2">
+        <img class="app_icon" src="{{baseURL}}/_db/{{id}}/{{icon_96}}" width="96" />
+      </div>
+      <div class="span9">
+        <h1 class="app_title">{{title}}</h1>
+        <span class="author">
+          By <a href="#" class="uploaded_by"></a>
+        </span>
+        <span class="updated">
+          Updated <span class="readable"></span>
+        </span>
 
-
-<div class="row">
-    <ul class="breadcrumb">
-      <li>
-        <a href="./#/apps">Apps</a> <span class="divider">/</span>
-      </li>
-      <li class="active">
-        Install Application
-      </li>
-    </ul>
-    <h1>Install Application</h1>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-<div class="row install-row">
-
-    {{#if is_auth}}
-
-
-
-        {{#if app_url}}
-            <div class="alert-message block-message warning">
-                <p><strong>Heads up!</strong> You are about to <strong>install</strong> an application. Make sure you trust the information below.</p>
-            </div>
-            <div class="loading" data-appurl="{{app_url}}">
-                Loading installation information...Please wait
-            </div>
-
-        {{else}}
-
-              <form class="well search-form">
-                <input type="text" class="span6" placeholder="Application Url" name="app_url">
-                <button type="submit" class="btn">Next &raquo;</button>
-              </form>
-
-        {{/if}}
-    {{else}}
-        <div class="alert-message block-message warning">
-            <p>You need to login as an admin to install an application</p>
+<div id="thirdbar" class="app_details">
+  <div class="container">
+    <div class="row">
+        <div class="span2">
+            Garden20!
         </div>
-    {{/if}}
- 
+    </div>
+  </div>
 </div>
+<div class="container">
+  <div id="content">
+    <div class="row">
+
+        <div class="span3">
+            Login
+        </div>
+        <div class="span3">
+            Signup
+        </div>
+
+
+
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="static/js/install.js"></script>

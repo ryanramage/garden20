@@ -1,4 +1,4 @@
-    var _ = require('underscore')._;
+var _ = require('underscore')._;
 var handlebars = require('handlebars');
 var garden_urls = require('lib/garden_urls');
 var userType = require('lib/userType');
@@ -11,7 +11,7 @@ var gravatar = require('gravatar');
 
 $(function() {
 
-  var q = $.parseQuery();
+  var q = {};
   if (q.app_url) {
 
       $('.install-message span').text(q.app_url);

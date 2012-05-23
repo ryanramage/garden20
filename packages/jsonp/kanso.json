@@ -1,0 +1,10 @@
+{
+    "name": "jsonp",
+    "version": "0.0.1",
+    "description": "Utilities for making JSONP responses from CouchDB",
+    "modules": ["jsonp.js"],
+    "dependencies": {
+        "modules": null,
+        "underscore": null
+    }
+}
