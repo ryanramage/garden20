@@ -3,7 +3,7 @@ var handlebars = require('handlebars');
 var garden_urls = require('lib/garden_urls');
 var userType = require('lib/userType');
 var couch = require('db');
-var current_db = couch.use('_db');
+var current_db = couch.use('./_db');
 var session = require('session');
 var sha1 = require('sha1');
 var gravatar = require('gravatar');
@@ -164,7 +164,7 @@ $(function() {
       var base = '/';
       var app_url = $('.app_info').data('app_url');
       if (app_url) {
-          base += 'install?app_url=' + q.app_url;
+          base += 'install?app_url=' + app_url;
       }
       return base;
       
@@ -174,7 +174,14 @@ $(function() {
 
   $('form.main').live('submit', function() {
       var app_url = $('.app_info').data('app_url');
-      var details = $(this).formParams();
+      var details = {
+          space: $('form.main input[name="space"]').val(),
+          first_name: $('form.main input[name="first_name"]').val(),
+          last_name: $('form.main input[name="last_name"]').val(),
+          email: $('form.main input[name="email"]').val(),
+          password: $('form.main input[name="password"]').val(),
+          confirm_password: $('form.main input[name="confirm_password"]').val()
+      }
       details.type = 'request';
       details.start = new Date().getTime();
       if (app_url) {
@@ -224,9 +231,9 @@ $(function() {
                     include_docs : true,
                     id : resp.id
                 }, function(err, resp) {
-                    console.log('change');
+
                     if (err) return console.log('error in changes: ' + err);
-                    console.log(resp);
+
 
                     var progress = resp.results[0].doc;
                     showProgress(progress, details);
