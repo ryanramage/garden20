@@ -146,6 +146,7 @@ $(function() {
         $('.install-info .progress').removeClass('active');
 
         $('.install-complete').show();
+        $('html, body').animate({ scrollTop: $(".install-complete").offset().top }, 500);
 
         var url = generateGardenLink();
         var session_url = 'http://' + $('input[name="space"]').val() + '.garden20.com/_session?next=' + url;
